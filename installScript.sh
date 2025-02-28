@@ -1,7 +1,8 @@
 echo "INSTALLING"
 
+cd ~/
 sudo apt update
-sudo apt instlal neovim
+sudo apt install neovim
 sudo apt install clang
 cd ~/.config
 cd zsh
