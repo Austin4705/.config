@@ -4,9 +4,8 @@ cd ~/
 sudo apt update
 sudo apt install neovim
 sudo apt install clang
-cd ~/.config
-cd zsh
-mv .zshrc ~/
+
+mv ~/.config/zsh/.zshrc ~/
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 sudo git clone https://github.com/Austin4705/.config.git
