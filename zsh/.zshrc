@@ -56,6 +56,7 @@ alias skibiditoilet="echo dub dub dub yes yes"
 alias goon="echo everyday"
 alias img="kitty +kitten icat"
 alias tc="latexmk -c" #TexClean
+alias fclr="printf '\033c'"
 
 mkcd() {
 	mkdir $1 && cd $1
