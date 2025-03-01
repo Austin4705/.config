@@ -10,7 +10,7 @@ sudo mv ~/.config/zsh/.zshrc ~/.zshrc
 sudo mv ~/.config/zsh/.p10k.zsh ~/.p10k.zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-sudo git clone https://github.com/Austin4705/.config.git
+sudo git clone https://github.com/Austin4705/.config.git ~/
 
 #downloading
 
