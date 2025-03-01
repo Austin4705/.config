@@ -15,7 +15,7 @@ sudo git clone https://github.com/Austin4705/.config.git ~/.config
 #downloading
 
 #Installing zsh
-echo $ZSH_THEME
-sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k\necho 'source ~/.powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-source ~/.zshrc
+#echo $ZSH_THEME
+#sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k\necho 'source ~/.powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+#[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+#source ~/.zshrc
