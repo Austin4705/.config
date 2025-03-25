@@ -1,0 +1,19 @@
+{
+  "profiles" : [
+    {
+      "id" : "08E58837-B7C4-4D75-950B-37780C85AB4F",
+      "name" : "Default",
+      "workspaces" : [
+        {
+          "apps" : [
+
+          ],
+          "display" : "Built-in Retina Display",
+          "id" : "E61D494A-43EA-42DF-84E6-8A34CB95B03C",
+          "name" : "KenjiDev"
+        }
+      ]
+    }
+  ],
+  "selectedProfileId" : "08E58837-B7C4-4D75-950B-37780C85AB4F"
+}

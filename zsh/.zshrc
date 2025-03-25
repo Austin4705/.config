@@ -46,8 +46,6 @@ if [[ "$(uname)" == "Darwin" ]]; then
   source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-alias vi="nvim"
-alias vim="nvim"
 alias v="nvim"
 alias clr="clear"
 alias q="exit"
@@ -57,6 +55,8 @@ alias goon="echo everyday"
 alias img="kitty +kitten icat"
 alias tc="latexmk -c" #TexClean
 alias fclr="printf '\033c'"
+alias gal="git add ."
+alias gc="git commit -a -S -m"
 
 mkcd() {
 	mkdir $1 && cd $1

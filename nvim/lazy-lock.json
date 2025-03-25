@@ -54,6 +54,8 @@
   "tree-sitter-haskell": { "branch": "master", "commit": "0975ef72fc3c47b530309ca93937d7d143523628" },
   "trouble.nvim": { "branch": "main", "commit": "85bedb7eb7fa331a2ccbecb9202d8abba64d37b3" },
   "ts-comments.nvim": { "branch": "main", "commit": "872dcfa0418f4a33b7437fb4d9f4e89f2f000d74" },
+  "typst-preview.nvim": { "branch": "master", "commit": "00ff6829030f302e8ff24d0e3a68625dd1a3ac40" },
+  "typst.vim": { "branch": "main", "commit": "8ce752f1ba1277046429cb469c17ff2e1abc718f" },
   "venv-selector.nvim": { "branch": "regexp", "commit": "e82594274bf7b54387f9a2abe65f74909ac66e97" },
   "vimtex": { "branch": "master", "commit": "56d531225b14397c470f7a1f55382a4a449b46e1" },
   "which-key.nvim": { "branch": "main", "commit": "5bf7a73fe851896d5ac26d313db849bf00f45b78" },
