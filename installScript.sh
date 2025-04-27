@@ -1,13 +1,18 @@
-echo "INSTALLING (for linux)"
+echo "Austin's Install Script, Designed to get .config file operational in a single .sh file!"
 
-sudo apt -y update
-sudo apt -y install neovim
-sudo apt -y install clang
-sudo apt -y install zsh
-sudo apt -y install eza
-sudo apt -y install make
-sudo apt -y install clangd
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
-sudo cp ~/.config/zsh/.zshrc ~/.zshrc
-sudo cp ~/.config/zsh/.p10k.zsh ~/.p10k.zsh
+sudo ln -s ~/.config/zsh/.zshrc ~/.zshrc
+packages="git neovim clang zsh eza make clangd htop curl"
+
+if [ -f /etc/fedora-release ]; then
+  echo "Detected Fedora"
+  sudo dnf install -y $packages
+elif [ -f /etc/lsb-release ] || [ -f /etc/debian_version ]; then
+  echo "Detected Ubuntu/Debian"
+  sudo apt update
+  sudo apt install -y $packages
+elif [[ "$(uname)" == "Darwin" ]]; then
+  echo "Detected MacOS, install Homebrew!"
+else
+  echo "Unsupported OS"
+  exit 1
+fi
