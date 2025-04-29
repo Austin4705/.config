@@ -1,5 +1,0 @@
-return {
-  {
-    "dccsillag/magma-nvim",
-  },
-}
