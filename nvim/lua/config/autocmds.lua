@@ -23,8 +23,28 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "ipynb" },
+  callback = function()
+    vim.opt_local.wrap = false
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
   pattern = { "cpp", "h", "hpp", "c" },
   callback = function()
     vim.g.autoformat = false
   end,
 })
+
+-- -- Add near your NotebookNavigator config or in an ftplugin
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "markdown",
+--   group = vim.api.nvim_create_augroup("NN_Init", { clear = true }),
+--   callback = function()
+--     -- Try to gently initialize NN state if possible
+--     -- Replace with a real init function if NN provides one
+--     pcall(require("notebook-navigator").is_notebook)
+--     -- You might need a small delay if it's still a timing issue
+--     -- vim.defer_fn(function() pcall(require("notebook-navigator").is_notebook) end, 100)
+--   end,
+-- })

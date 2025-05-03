@@ -118,13 +118,13 @@ alt-a = 'workspace A' # In your config, you can drop workspace bindings that you
 alt-c = 'workspace C'
 # alt-d = 'workspace D'
 # alt-e = 'workspace E'
-# alt-f = 'workspace F'
+alt-f = 'workspace F'
 alt-g = 'workspace G'
 # alt-i = 'workspace I'
 alt-m = 'workspace M'
 # alt-n = 'workspace N'
 # alt-o = 'workspace O'
-alt-p = 'workspace P'
+#alt-p = 'workspace P'
 # alt-q = 'workspace Q'
 # alt-r = 'workspace R'
 # alt-s = 'workspace S'
@@ -151,13 +151,13 @@ alt-shift-a = 'move-node-to-workspace A'
 alt-shift-c = 'move-node-to-workspace C'
 # alt-shift-d = 'move-node-to-workspace D'
 # alt-shift-e = 'move-node-to-workspace E'
-# alt-shift-f = 'move-node-to-workspace F'
+alt-shift-f = 'move-node-to-workspace F'
 alt-shift-g = 'move-node-to-workspace G'
 # alt-shift-i = 'move-node-to-workspace I'
 alt-shift-m = 'move-node-to-workspace M'
 # alt-shift-n = 'move-node-to-workspace N'
 # alt-shift-o = 'move-node-to-workspace O'
-alt-shift-p = 'move-node-to-workspace P'
+#alt-shift-p = 'move-node-to-workspace P'
 # alt-shift-q = 'move-node-to-workspace Q'
 # alt-shift-r = 'move-node-to-workspace R'
 # alt-shift-s = 'move-node-to-workspace S'
@@ -179,10 +179,49 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-enter = 'move-workspace-to-monitor --wrap-around next'
 alt-enter = 'fullscreen'
 
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 
 alt-b = ['enable off', 'enable on']
+alt-s = [ # Switch all monitors
+  'move-workspace-to-monitor --wrap-around next --workspace 1',
+  'move-workspace-to-monitor --wrap-around next --workspace 2',
+  'move-workspace-to-monitor --wrap-around next --workspace 3',
+  'move-workspace-to-monitor --wrap-around next --workspace 4',
+  'move-workspace-to-monitor --wrap-around next --workspace A',
+  'move-workspace-to-monitor --wrap-around next --workspace C',
+  'move-workspace-to-monitor --wrap-around next --workspace F',
+  'move-workspace-to-monitor --wrap-around next --workspace G',
+  'move-workspace-to-monitor --wrap-around next --workspace M',
+  'move-workspace-to-monitor --wrap-around next --workspace V',
+  'move-workspace-to-monitor --wrap-around next --workspace W',
+  'move-workspace-to-monitor --wrap-around next --workspace X',
+  'move-workspace-to-monitor --wrap-around next --workspace Z',
+]
+
+alt-d = [ # Display
+  'move-workspace-to-monitor --workspace 1 main',
+  'move-workspace-to-monitor --workspace 2 main',
+  'move-workspace-to-monitor --workspace 3 main',
+  'move-workspace-to-monitor --workspace 4 main',
+  'move-workspace-to-monitor --workspace A secondary',
+  'move-workspace-to-monitor --workspace C secondary',
+  'move-workspace-to-monitor --workspace F main',
+  'move-workspace-to-monitor --workspace G secondary',
+  'move-workspace-to-monitor --workspace M secondary',
+  'move-workspace-to-monitor --workspace V main',
+  'move-workspace-to-monitor --workspace W main',
+  'move-workspace-to-monitor --workspace X main',
+  'move-workspace-to-monitor --workspace Z secondary',
+]
+
+alt-r = [ # Reset
+
+]
+
+# Move mouse key bind
+alt-t = ['move-mouse window-lazy-center']
 
 
 # 'service' binding mode declaration.
@@ -239,10 +278,10 @@ run = "move-node-to-workspace C"
 if.app-id = "com.spotify.client"
 run = "move-node-to-workspace M"
 
-# P for apple preview
+# F for file preview
 [[on-window-detected]]
 if.app-id = "com.apple.Preview"
-run = "move-node-to-workspace P"
+run = "move-node-to-workspace F"
 
 # Z for Zotero and Quaderno
 [[on-window-detected]]
@@ -287,3 +326,18 @@ run = "move-node-to-workspace G"
 [[on-window-detected]]
 if.app-id = "com.autodesk.fusion360"
 run = "move-node-to-workspace F"
+
+#[workspace-to-monitor-force-assignment]
+#2 = 'main'
+#3 = 'main'
+#4 = 'main'
+#5 = 'main'
+#A = 'secondary'
+#C = 'secondary'
+#F = 'main'
+#G = 'secondary'
+#M = 'secondary'
+#V = 'main'
+#W = 'main'
+#X = 'main'
+#Z = 'secondary'

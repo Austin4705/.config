@@ -86,6 +86,13 @@ return {
           -- stylua: ignore
           vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
           vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
+
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buffer, desc = "Show hover documentation" })
+          vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = buffer, desc = "Show signature help" })
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = buffer, desc = "Go to definition" })
+          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = buffer, desc = "Go to declaration" })
+          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = buffer, desc = "Go to implementation" })
+          vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = buffer, desc = "Go to type definition" })
         end)
       end,
     },

@@ -1,80 +1,87 @@
--- Add this to your Lazy Nvim configuration (typically in lua/plugins/jupyter.lua or similar)
-return {
-  {
-    "benlubas/molten-nvim",
-    version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
-    dependencies = {
-      "3rd/image.nvim", -- Optional but recommended for image support
-    },
-    build = ":UpdateRemotePlugins",
-    -- This is important to ensure the plugin is loaded properly
-    lazy = false,
-    init = function()
-      -- Configure molten.nvim
-      vim.g.molten_output_win_max_height = 20
-      vim.g.molten_image_provider = "image.nvim" -- or "none" if you don't want images
-      vim.g.molten_auto_open_output = false -- Set to true to auto-open output window
-
-      -- Set Python host program if using a virtual environment
-      -- vim.g.python3_host_prog = "~/.local/share/nvim/venv/bin/python"
-    end,
-    keys = {
-      {
-        "<leader>mi",
-        "<cmd>MoltenInit<cr>",
-        desc = "Initialize Molten kernel",
-      },
-      {
-        "<leader>me",
-        "<cmd>MoltenEvaluateOperator<cr>",
-        mode = { "n", "x" },
-        desc = "Evaluate operator (line or selection)",
-        expr = true,
-      },
-      {
-        "<leader>ml",
-        "<cmd>MoltenEvaluateLine<cr>",
-        desc = "Evaluate line",
-      },
-      {
-        "<leader>mr",
-        "<cmd>MoltenReevaluateCell<cr>",
-        desc = "Re-evaluate cell",
-      },
-      {
-        "<leader>md",
-        "<cmd>MoltenDelete<cr>",
-        desc = "Delete cell",
-      },
-      {
-        "<leader>mo",
-        "<cmd>noautocmd MoltenEnterOutput<cr>",
-        desc = "Enter output window",
-      },
-    },
-  },
-
-  -- Only if you want image support (recommended)
-  {
-    "3rd/image.nvim",
-    opts = {
-      backend = "kitty", -- or "ueberzug" or other supported backend
-      max_width = 100,
-      max_height = 20,
-      max_height_window_percentage = 50,
-      max_width_window_percentage = 50,
-      window_overlap_clear_enabled = true,
-    },
-  },
-  {
-    "GCBallesteros/jupytext.nvim",
-    lazy = false, -- Important: Don't lazy load this plugin
-    config = function()
-      require("jupytext").setup({
-        style = "markdown",
-        output_extension = "md",
-        force_ft = "markdown",
-      })
-    end,
-  },
-}
+return {}
+-- -- Add this to your Lazy Nvim configuration (typically in lua/plugins/jupyter.lua or similar)
+-- return {
+--   {
+--     "benlubas/molten-nvim",
+--     version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+--     dependencies = {
+--       "3rd/image.nvim", -- Optional but recommended for image support
+--     },
+--     build = ":UpdateRemotePlugins",
+--     -- This is important to ensure the plugin is loaded properly
+--     lazy = false,
+--     init = function()
+--       -- Configure molten.nvim
+--       vim.g.molten_output_win_max_height = 20
+--       vim.g.molten_image_provider = "image.nvim" -- or "none" if you don't want images
+--       vim.g.molten_auto_open_output = false -- Set to true to auto-open output window
+--
+--       -- Set Python host program if using a virtual environment
+--       -- vim.g.python3_host_prog = "~/.local/share/nvim/venv/bin/python"
+--     end,
+--     keys = {
+--       {
+--         "<leader>mi",
+--         "<cmd>MoltenInit<cr>",
+--         desc = "Initialize Molten kernel",
+--       },
+--       {
+--         "<leader>me",
+--         "<cmd>MoltenEvaluateOperator<cr>",
+--         mode = "n",
+--         desc = "Evaluate operator (requires motion)",
+--         expr = false,
+--       },
+--       {
+--         "<leader>mel",
+--         "<cmd>MoltenEvaluateOperator<cr>ip",
+--         mode = "n",
+--         desc = "Evaluate paragraph",
+--       },
+--       {
+--         "<leader>ml",
+--         "<cmd>MoltenEvaluateLine<cr>",
+--         desc = "Evaluate line",
+--       },
+--       {
+--         "<leader>mr",
+--         "<cmd>MoltenReevaluateCell<cr>",
+--         desc = "Re-evaluate cell",
+--       },
+--       {
+--         "<leader>md",
+--         "<cmd>MoltenDelete<cr>",
+--         desc = "Delete cell",
+--       },
+--       {
+--         "<leader>mo",
+--         "<cmd>noautocmd MoltenEnterOutput<cr>",
+--         desc = "Enter output window",
+--       },
+--     },
+--   },
+--
+--   -- Only if you want image support (recommended)
+--   {
+--     "3rd/image.nvim",
+--     opts = {
+--       backend = "kitty", -- or "ueberzug" or other supported backend
+--       max_width = 100,
+--       max_height = 20,
+--       max_height_window_percentage = 50,
+--       max_width_window_percentage = 50,
+--       window_overlap_clear_enabled = true,
+--     },
+--   },
+--   {
+--     "GCBallesteros/jupytext.nvim",
+--     lazy = false, -- Important: Don't lazy load this plugin
+--     config = function()
+--       require("jupytext").setup({
+--         style = "markdown",
+--         output_extension = "md",
+--         force_ft = "markdown",
+--       })
+--     end,
+--   },
+-- }

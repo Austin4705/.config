@@ -1,0 +1,198 @@
+return {}
+-- -- Add this to your Lazy Nvim configuration (typically in lua/plugins/notebook.lua or similar)
+-- return {
+--   {
+--     "GCBallesteros/NotebookNavigator.nvim",
+--     keys = {
+--       -- Navigate between cells
+--       {
+--         "]h",
+--         function()
+--           require("notebook-navigator").move_cell("d")
+--         end,
+--         desc = "Move to next cell",
+--       },
+--       {
+--         "[h",
+--         function()
+--           require("notebook-navigator").move_cell("u")
+--         end,
+--         desc = "Move to previous cell",
+--       },
+--
+--       -- Execute cells
+--       {
+--         "<leader>nx",
+--         function()
+--           require("notebook-navigator").run_cell()
+--         end,
+--         desc = "Run current cell",
+--       },
+--       {
+--         "<leader>nX",
+--         function()
+--           require("notebook-navigator").run_and_move()
+--         end,
+--         desc = "Run cell and move to next",
+--       },
+--       {
+--         "<leader>na",
+--         function()
+--           require("notebook-navigator").run_all_cells()
+--         end,
+--         desc = "Run all cells",
+--       },
+--       {
+--         "<leader>nA",
+--         function()
+--           require("notebook-navigator").run_all_cells_above()
+--         end,
+--         desc = "Run all cells above",
+--       },
+--       {
+--         "<leader>nB",
+--         function()
+--           require("notebook-navigator").run_all_cells_below()
+--         end,
+--         desc = "Run all cells below",
+--       },
+--     },
+--     dependencies = {
+--       "echasnovski/mini.comment", -- For commenting functionality
+--       -- REPL provider (choose one):
+--       "benlubas/molten-nvim", -- We'll use molten-nvim as our REPL provider
+--       -- "hkupty/iron.nvim",      -- Alternative REPL provider
+--       -- "akinsho/toggleterm.nvim", -- Another alternative REPL provider
+--
+--       -- Optional but recommended:
+--       "anuvyklack/hydra.nvim", -- For the cell execution hydra interface
+--     },
+--     config = function()
+--       local nn = require("notebook-navigator")
+--       local Hydra = require("hydra")
+--
+--       -- Ensure Molten is initialized
+--       vim.cmd("MoltenInit")
+--
+--       -- Create a custom Hydra for notebook navigation
+--       local hydra = Hydra({
+--         name = "Notebook Navigator",
+--         mode = "n",
+--         body = "<leader>h",
+--         hint = [[
+--  ^ ^              Notebook Navigator
+--  ^
+--  _x_: Run Cell    _s_: Split Cell  _j_: Next Cell     _q_: Exit
+--  _X_: Run & Move  _m_: Merge Cell  _k_: Previous Cell _i_: Insert Cell
+--  _a_: Run All     _d_: Delete Cell
+--  ^
+-- ]],
+--         config = {
+--           color = "pink",
+--           invoke_on_body = true,
+--           hint = {
+--             position = "bottom",
+--             border = "rounded",
+--           },
+--         },
+--         heads = {
+--           {
+--             "x",
+--             function()
+--               nn.run_cell()
+--             end,
+--             { desc = "Run Cell" },
+--           },
+--           {
+--             "X",
+--             function()
+--               nn.run_and_move()
+--             end,
+--             { desc = "Run & Move" },
+--           },
+--           {
+--             "a",
+--             function()
+--               nn.run_all_cells()
+--             end,
+--             { desc = "Run All" },
+--           },
+--           {
+--             "j",
+--             function()
+--               nn.move_cell("d")
+--             end,
+--             { desc = "Next Cell" },
+--           },
+--           {
+--             "k",
+--             function()
+--               nn.move_cell("u")
+--             end,
+--             { desc = "Previous Cell" },
+--           },
+--           {
+--             "i",
+--             function()
+--               local current_line = vim.api.nvim_win_get_cursor(0)[1]
+--               local lines = {
+--                 "```python",
+--                 "",
+--                 "```",
+--               }
+--               vim.api.nvim_buf_set_lines(0, current_line, current_line, false, lines)
+--               vim.api.nvim_win_set_cursor(0, { current_line + 1, 0 })
+--             end,
+--             { desc = "Insert Cell" },
+--           },
+--           {
+--             "s",
+--             function()
+--               nn.split_cell()
+--             end,
+--             { desc = "Split Cell" },
+--           },
+--           {
+--             "m",
+--             function()
+--               nn.merge_cell()
+--             end,
+--             { desc = "Merge Cell" },
+--           },
+--           {
+--             "d",
+--             function()
+--               nn.delete_cell()
+--             end,
+--             { desc = "Delete Cell" },
+--           },
+--           { "q", nil, { exit = true, desc = "Exit" } },
+--         },
+--       })
+--
+--       nn.setup({
+--         -- Code cell marker configuration for markdown
+--         cell_markers = {
+--           markdown = "```python",
+--           python = "```python",
+--         },
+--
+--         -- Use molten-nvim as the REPL provider
+--         repl_provider = "molten",
+--
+--         -- Highlight cell separators
+--         syntax_highlight = true,
+--
+--         -- Custom cell execution function
+--         execute_cell = function()
+--           -- Check if Molten is initialized
+--           if vim.fn.exists(":MoltenEvaluateOperator") == 2 then
+--             vim.cmd("MoltenEvaluateOperator")
+--           else
+--             vim.notify("Molten is not initialized. Please run :MoltenInit first", vim.log.levels.ERROR)
+--           end
+--         end,
+--       })
+--     end,
+--   },
+-- }

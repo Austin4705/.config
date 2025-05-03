@@ -1,4 +1,5 @@
 *~
+.apikeys
 !VSCodium/User/keybindings.json
 !VSCodium/User/settings.json
 VSCodium/

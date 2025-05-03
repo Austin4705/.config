@@ -139,6 +139,8 @@ gpgconf --launch gpg-agent
 
 export EDITOR=nvim
 export TEXINPUTS=~/Documents/Templates//: #Needed so latex can always find my sty files
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+# export VCPKG_ROOT="$HOME/Documents/vcpkg/"
 
 # Checks if path exists
 [ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH" #Used for rust
