@@ -18,7 +18,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.wrap = true
     -- If you also want linebreak at word boundaries:
     -- vim.opt_local.linebreak = true
+    -- Only compile if the current file is detected as a main LaTeX document
+    -- if vim.g.vimtex_is_main_file then
     vim.cmd("VimtexCompile")
+    -- end
   end,
 })
 

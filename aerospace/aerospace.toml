@@ -200,7 +200,7 @@ alt-s = [ # Switch all monitors
   'move-workspace-to-monitor --wrap-around next --workspace Z',
 ]
 
-alt-d = [ # Display
+alt-i = [ # Initlize Display
   'move-workspace-to-monitor --workspace 1 main',
   'move-workspace-to-monitor --workspace 2 main',
   'move-workspace-to-monitor --workspace 3 main',
@@ -250,10 +250,18 @@ run = "move-node-to-workspace A"
 if.app-id = "com.anthropic.claudefordesktop"
 run = "move-node-to-workspace A"
 
-# E for cursor
+# X for working apps
 [[on-window-detected]]
 if.app-id = "com.todesktop.230313mzl4w4u92"
-run = "move-node-to-workspace E"
+run = "move-node-to-workspace X"
+
+[[on-window-detected]]
+if.app-id = "com.autodesk.fusion360"
+run = "move-node-to-workspace F"
+
+[[on-window-detected]]
+if.app-id = "com.microsoft.rdc.macos"
+run = "move-node-to-workspace F"
 
 # V for vim
 [[on-window-detected]]
@@ -273,15 +281,23 @@ run = "move-node-to-workspace C"
 if.app-id = "com.legcord.legcord"
 run = "move-node-to-workspace C"
 
+[[on-window-detected]]
+if.app-id = "com.automattic.beeper.desktop"
+run = "move-node-to-workspace C"
+
 # M for Music
 [[on-window-detected]]
 if.app-id = "com.spotify.client"
 run = "move-node-to-workspace M"
 
+[[on-window-detected]]
+if.app-id = "com.apple.Music"
+run = "move-node-to-workspace M"
+
 # F for file preview
 [[on-window-detected]]
 if.app-id = "com.apple.Preview"
-run = "move-node-to-workspace F"
+run = ["layout floating", "move-node-to-workspace F"]
 
 # Z for Zotero and Quaderno
 [[on-window-detected]]
@@ -295,6 +311,10 @@ run = "move-node-to-workspace Z"
 # W for web
 [[on-window-detected]]
 if.app-id = "app.zen-browser.zen"
+run = "move-node-to-workspace W"
+
+[[on-window-detected]]
+if.app-id = "com.google.Chrome"
 run = "move-node-to-workspace W"
 
 # G for General space
@@ -320,12 +340,9 @@ run = "move-node-to-workspace G"
 
 [[on-window-detected]]
 if.app-id = "com.apple.finder"
-run = "move-node-to-workspace G"
+run = ["layout floating", "move-node-to-workspace G"]
+#run = ["layout floating"]
 
-# F for Fusion
-[[on-window-detected]]
-if.app-id = "com.autodesk.fusion360"
-run = "move-node-to-workspace F"
 
 #[workspace-to-monitor-force-assignment]
 #2 = 'main'

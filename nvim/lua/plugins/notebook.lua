@@ -1,198 +1,263 @@
 return {}
--- -- Add this to your Lazy Nvim configuration (typically in lua/plugins/notebook.lua or similar)
+-- -- ~/.config/nvim/lua/plugins/notebook.lua
+--
 -- return {
+--   -- Prerequisites:
+--   -- 1. Python 3 with pip and virtualenv
+--   --    Run: pip install pynvim jupytext jupyter_client ipykernel
+--   -- 2. Kitty terminal (for image display)
+--   -- 3. imagemagick (for Kitty image display with molten)
+--   --    Run: sudo apt install imagemagick (or equivalent for your OS)
+--   -- 4. ueberzug (optional, as a fallback or alternative image viewer if not using Kitty)
+--   --    Run: pip install ueberzug
+--
+--   -- Essential dependency for many plugins
 --   {
---     "GCBallesteros/NotebookNavigator.nvim",
---     keys = {
---       -- Navigate between cells
---       {
---         "]h",
---         function()
---           require("notebook-navigator").move_cell("d")
---         end,
---         desc = "Move to next cell",
---       },
---       {
---         "[h",
---         function()
---           require("notebook-navigator").move_cell("u")
---         end,
---         desc = "Move to previous cell",
+--     "nvim-lua/plenary.nvim",
+--     lazy = true,
+--   },
+--
+--   -- Molten-nvim: For running Jupyter cells and displaying results
+--   {
+--     "benlubas/molten-nvim",
+--     dependencies = { "nvim-lua/plenary.nvim" },
+--     ft = { "python", "markdown" }, -- Lazy load on python or markdown files
+--     build = ":UpdateRemotePlugins", -- Needed if you haven't run it before for pynvim
+--     opts = {
+--       -- Basic configuration
+--       default_kernel = "python3", -- Kernel to use
+--       output_panel = {
+--         enabled = true, -- Show an output panel for text results
+--         type = "popup", -- "popup", "split", or "kitty" (for text output in a new kitty window)
 --       },
 --
---       -- Execute cells
---       {
---         "<leader>nx",
---         function()
---           require("notebook-navigator").run_cell()
---         end,
---         desc = "Run current cell",
---       },
---       {
---         "<leader>nX",
---         function()
---           require("notebook-navigator").run_and_move()
---         end,
---         desc = "Run cell and move to next",
---       },
---       {
---         "<leader>na",
---         function()
---           require("notebook-navigator").run_all_cells()
---         end,
---         desc = "Run all cells",
---       },
---       {
---         "<leader>nA",
---         function()
---           require("notebook-navigator").run_all_cells_above()
---         end,
---         desc = "Run all cells above",
---       },
---       {
---         "<leader>nB",
---         function()
---           require("notebook-navigator").run_all_cells_below()
---         end,
---         desc = "Run all cells below",
---       },
+--       -- Image display configuration
+--       image_provider = "kitty", -- Use "kitty", "ueberzug", or "chafa"
+--       show_image_in_popup = true, -- For kitty and ueberzug, displays image in a floating window
+--       kitty_font_size_adjustment = 0, -- Adjust if kitty image font size is off
+--
+--       -- Virtual environment settings
+--       venv_path = ".venv", -- Path to virtual environment (relative to project root or absolute)
+--       -- auto_create_venv = true, -- Automatically create venv if it doesn't exist (experimental)
+--
+--       -- Other useful settings
+--       -- notify_on_job_finish = true, -- Neovim notification when a cell finishes running
+--       -- cell_highlight_current = "MoltenCellCurrent", -- Highlight group for the current cell
+--       -- cell_highlight_executed = "MoltenCellExecuted", -- Highlight group for executed cells
 --     },
---     dependencies = {
---       "echasnovski/mini.comment", -- For commenting functionality
---       -- REPL provider (choose one):
---       "benlubas/molten-nvim", -- We'll use molten-nvim as our REPL provider
---       -- "hkupty/iron.nvim",      -- Alternative REPL provider
---       -- "akinsho/toggleterm.nvim", -- Another alternative REPL provider
+--     config = function(_, opts)
+--       require("molten").setup(opts)
 --
---       -- Optional but recommended:
---       "anuvyklack/hydra.nvim", -- For the cell execution hydra interface
---     },
---     config = function()
---       local nn = require("notebook-navigator")
---       local Hydra = require("hydra")
+--       -- Example Keymaps for Molten
+--       -- It's recommended to use a plugin like which-key.nvim for better keymap management
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>mr",
+--         "<cmd>MoltenRunCell<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Run Cell" }
+--       )
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>mR",
+--         "<cmd>MoltenRunCellAndAdvance<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Run Cell & Advance" }
+--       )
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>ma",
+--         "<cmd>MoltenRunAll<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Run All Cells" }
+--       )
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>mb",
+--         "<cmd>MoltenRunBelow<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Run Cells Below" }
+--       )
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>mo",
+--         "<cmd>MoltenReRunCell<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Re-run Cell" }
+--       )
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>mc",
+--         "<cmd>MoltenClearOutput<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Clear Cell Output" }
+--       )
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>md",
+--         "<cmd>MoltenDeleteCell<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Delete Cell (if supported by navigator)" }
+--       )
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>mi",
+--         "<cmd>MoltenInit<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Initialize Kernel" }
+--       )
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>ms",
+--         "<cmd>MoltenSelectKernel<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Select Kernel" }
+--       )
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>mx",
+--         "<cmd>MoltenStopKernel<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Stop/Interrupt Kernel" }
+--       )
 --
---       -- Ensure Molten is initialized
---       vim.cmd("MoltenInit")
+--       -- Visual mode mapping to run selected code
+--       vim.api.nvim_set_keymap(
+--         "v",
+--         "<leader>mr",
+--         "<cmd>MoltenRunSelected<CR>",
+--         { noremap = true, silent = true, desc = "Molten: Run Selected" }
+--       )
 --
---       -- Create a custom Hydra for notebook navigation
---       local hydra = Hydra({
---         name = "Notebook Navigator",
---         mode = "n",
---         body = "<leader>h",
---         hint = [[
---  ^ ^              Notebook Navigator
---  ^
---  _x_: Run Cell    _s_: Split Cell  _j_: Next Cell     _q_: Exit
---  _X_: Run & Move  _m_: Merge Cell  _k_: Previous Cell _i_: Insert Cell
---  _a_: Run All     _d_: Delete Cell
---  ^
--- ]],
---         config = {
---           color = "pink",
---           invoke_on_body = true,
---           hint = {
---             position = "bottom",
---             border = "rounded",
---           },
---         },
---         heads = {
---           {
---             "x",
---             function()
---               nn.run_cell()
---             end,
---             { desc = "Run Cell" },
---           },
---           {
---             "X",
---             function()
---               nn.run_and_move()
---             end,
---             { desc = "Run & Move" },
---           },
---           {
---             "a",
---             function()
---               nn.run_all_cells()
---             end,
---             { desc = "Run All" },
---           },
---           {
---             "j",
---             function()
---               nn.move_cell("d")
---             end,
---             { desc = "Next Cell" },
---           },
---           {
---             "k",
---             function()
---               nn.move_cell("u")
---             end,
---             { desc = "Previous Cell" },
---           },
---           {
---             "i",
---             function()
---               local current_line = vim.api.nvim_win_get_cursor(0)[1]
---               local lines = {
---                 "```python",
---                 "",
---                 "```",
---               }
---               vim.api.nvim_buf_set_lines(0, current_line, current_line, false, lines)
---               vim.api.nvim_win_set_cursor(0, { current_line + 1, 0 })
---             end,
---             { desc = "Insert Cell" },
---           },
---           {
---             "s",
---             function()
---               nn.split_cell()
---             end,
---             { desc = "Split Cell" },
---           },
---           {
---             "m",
---             function()
---               nn.merge_cell()
---             end,
---             { desc = "Merge Cell" },
---           },
---           {
---             "d",
---             function()
---               nn.delete_cell()
---             end,
---             { desc = "Delete Cell" },
---           },
---           { "q", nil, { exit = true, desc = "Exit" } },
---         },
---       })
---
---       nn.setup({
---         -- Code cell marker configuration for markdown
---         cell_markers = {
---           markdown = "```python",
---           python = "```python",
---         },
---
---         -- Use molten-nvim as the REPL provider
---         repl_provider = "molten",
---
---         -- Highlight cell separators
---         syntax_highlight = true,
---
---         -- Custom cell execution function
---         execute_cell = function()
---           -- Check if Molten is initialized
---           if vim.fn.exists(":MoltenEvaluateOperator") == 2 then
---             vim.cmd("MoltenEvaluateOperator")
---           else
---             vim.notify("Molten is not initialized. Please run :MoltenInit first", vim.log.levels.ERROR)
---           end
+--       -- You might want to initialize molten for specific filetypes automatically
+--       vim.api.nvim_create_autocmd("FileType", {
+--         pattern = "python",
+--         callback = function()
+--           -- You can call MoltenInit here if you want to auto-start a kernel
+--           -- vim.cmd("MoltenInit")
+--           -- Or set up local keymaps
 --         end,
 --       })
+--     end,
+--   },
+--
+--   -- Jupytext.nvim: For converting between .ipynb and text formats (.py, .md)
+--   {
+--     "gcavallanti/jupytext.nvim",
+--     ft = { "python", "markdown" }, -- Lazy load on relevant filetypes
+--     dependencies = { "nvim-lua/plenary.nvim" },
+--     opts = {
+--       -- Default format to use when not specified or when auto-detecting.
+--       -- "auto" tries to guess, "py:percent" is common for Python.
+--       jupytext_fmt = "py:percent",
+--       -- Or, specify per filetype:
+--       -- jupytext_filetype_map = {
+--       --   python = "py:percent", -- Use "# %%" cell markers
+--       --   markdown = "md",
+--       -- },
+--       jupytext_executable = "jupytext", -- Command or path to jupytext CLI
+--       jupytext_sync_on_save = true, -- Sync .ipynb when saving the text file
+--       jupytext_sync_on_change = false, -- Sync on every change (can be too frequent)
+--       -- jupytext_read_notebook_metadata = true, -- Read metadata from the notebook
+--       -- jupytext_write_notebook_metadata = true, -- Write metadata to the notebook
+--       -- jupytext_stop_sync_on_error = false,
+--     },
+--     config = function(_, opts)
+--       require("jupytext").setup(opts)
+--
+--       -- Example Keymaps for Jupytext
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>js",
+--         "<cmd>JupytextSync<CR>",
+--         { noremap = true, silent = true, desc = "Jupytext: Sync with .ipynb" }
+--       )
+--       vim.api.nvim_set_keymap(
+--         "n",
+--         "<leader>jt",
+--         "<cmd>JupytextToggleAutoSync<CR>",
+--         { noremap = true, silent = true, desc = "Jupytext: Toggle Auto Sync" }
+--       )
+--       -- Add more keymaps for other Jupytext commands if needed
+--       -- e.g., JupytextToNotebook, JupytextToFormat, etc.
+--     end,
+--   },
+-- --
+-- --  -- Notebook-navigator.nvim: For cell navigation and management
+-- --  {
+-- --    "GCBallesteros/notebook-navigator.nvim",
+-- --    dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+-- --    ft = { "python", "markdown" }, -- Lazy load on relevant filetypes
+-- --    opts = {
+-- --      -- debug = false,
+-- --      -- Query to find the next/previous cell using Treesitter.
+-- --      -- These are defaults and usually work well with standard Python cell markers.
+-- --      -- query_next = "@cell.outer",
+-- --      -- query_prev = "@cell.outer",
+-- --      cell_markers = { -- Define cell markers for different filetypes
+-- --        python = { "# %%", "#%%", "# <codecell>", "# In[d*]:" },
+-- --        markdown = { "```python" }, -- Example for markdown code blocks
+-- --        -- Add other filetypes and their cell markers if needed
+-- --      },
+-- --      ft_to_parser = { -- Filetype to Treesitter parser name
+-- --        python = "python",
+-- --        markdown = "markdown", -- Ensure you have markdown TS parser for this
+-- --      },
+-- --      ensure_treesitter = { "python", "markdown" }, -- Ensure these parsers are installed
+-- --    },
+-- --    config = function(_, opts)
+-- --      require("notebook-navigator").setup(opts)
+-- --
+-- --      -- Example Keymaps for Notebook Navigator
+-- --      -- These often conflict with other plugins, so choose keys carefully or use which-key.nvim
+-- --      -- Cell navigation
+-- --      vim.api.nvim_set_keymap(
+-- --        "n",
+-- --        "]c",
+-- --        "<cmd>NotebookNavigatorCellNext<CR>",
+-- --        { noremap = true, silent = true, desc = "Notebook: Next Cell" }
+-- --      )
+-- --      vim.api.nvim_set_keymap(
+-- --        "n",
+-- --        "[c",
+-- --        "<cmd>NotebookNavigatorCellPrevious<CR>",
+-- --        { noremap = true, silent = true, desc = "Notebook: Previous Cell" }
+-- --      )
+-- --
+-- --      -- Cell manipulation (these might be better handled by molten or your own functions)
+-- --      -- vim.api.nvim_set_keymap("n", "<leader>nc", "<cmd>NotebookNavigatorCellCreateBelow<CR>", { noremap = true, silent = true, desc = "Notebook: Create Cell Below" })
+-- --      -- vim.api.nvim_set_keymap("n", "<leader>nC", "<cmd>NotebookNavigatorCellCreateAbove<CR>", { noremap = true, silent = true, desc = "Notebook: Create Cell Above" })
+-- --      -- vim.api.nvim_set_keymap("n", "<leader>nd", "<cmd>NotebookNavigatorCellDelete<CR>", { noremap = true, silent = true, desc = "Notebook: Delete Cell" })
+-- --
+-- --      -- Select cell
+-- --      vim.api.nvim_set_keymap(
+-- --        "x",
+-- --        "ic",
+-- --        "<cmd>NotebookNavigatorCellSelect<CR>",
+-- --        { noremap = true, silent = true, desc = "Notebook: Select Cell (inner)" }
+-- --      )
+-- --      vim.api.nvim_set_keymap(
+-- --        "x",
+-- --        "ac",
+-- --        "<cmd>NotebookNavigatorCellSelectOuter<CR>",
+-- --        { noremap = true, silent = true, desc = "Notebook: Select Cell (outer)" }
+-- --      )
+-- --      vim.api.nvim_set_keymap(
+-- --        "o",
+-- --        "ic",
+-- --        ":<c-u>NotebookNavigatorCellSelect<CR>",
+-- --        { noremap = true, silent = true, desc = "Notebook: Select Cell (inner)" }
+-- --      )
+-- --      vim.api.nvim_set_keymap(
+-- --        "o",
+-- --        "ac",
+-- --        ":<c-u>NotebookNavigatorCellSelectOuter<CR>",
+-- --        { noremap = true, silent = true, desc = "Notebook: Select Cell (outer)" }
+-- --      )
+-- --    end,
+-- --  },
+--
+--   -- Optional: which-key.nvim for better keymap discoverability
+--   {
+--     "folke/which-key.nvim",
+--     event = "VeryLazy",
+--     opts = {
+--       -- your which-key config
+--     },
+--     config = function(_, opts)
+--       vim.o.timeout = true
+--       vim.o.timeoutlen = 300
+--       require("which-key").setup(opts)
 --     end,
 --   },
 -- }

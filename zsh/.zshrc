@@ -39,9 +39,18 @@ _comp_options+=(globdots) # Include hidden files.
 
 # Custom ZSH Binds
 bindkey '^ ' autosuggest-accept
-source $HOME/.config/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.config/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+if [[ -r "$HOME/.config/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
+  source $HOME/.config/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+if [[ -r "$HOME/.config/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
+   source $HOME/.config/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 # ————————————————————————————————————————————————————————————————
 # Other program modifyers
 # ————————————————————————————————————————————————————————————————
@@ -82,6 +91,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
   if [ -d "/opt/homebrew/opt/trash-cli/bin" ]; then
     export PATH="/opt/homebrew/opt/trash-cli/bin:$PATH"
   fi
+  export PATH="/opt/homebrew/opt/ruby/bin:$PATH" 
+  export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+  export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
+  export PATH="$(gem environment gemdir)/bin:$PATH"
 fi
 
 # ————————————————————————————————————————————————————————————————
@@ -140,6 +154,7 @@ gpgconf --launch gpg-agent
 export EDITOR=nvim
 export TEXINPUTS=~/Documents/Templates//: #Needed so latex can always find my sty files
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+export VCPKG_ROOT="~/Dev/vcpkg"
 # export VCPKG_ROOT="$HOME/Documents/vcpkg/"
 
 # Checks if path exists
@@ -162,9 +177,13 @@ else
     alias rm='/bin/rm -i' # fallback to interactive rm
 fi
 
-alias ls="eza --icons"
-alias la="eza -la --icons"
+if command -v eza >/dev/null 2>&1; then
+    alias ls="eza --icons"
+    alias la="eza -la --icons"
+fi
+
 alias v="nvim"
+alias ya="yazi"
 alias clr="clear"
 alias q="exit"
 alias cpcmp="clang++ -Wall -g -O3 -std=c++20"

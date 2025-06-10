@@ -49,4 +49,9 @@ require("lazy").setup({
       },
     },
   },
+  -- Austin did:
+  rocks = {
+    enabled = true,
+    hererocks = true,
+  },
 })
