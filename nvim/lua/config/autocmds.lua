@@ -25,6 +25,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- TODO: Not working
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "typ",
+  callback = function()
+    vim.cmd("TypstWatch")
+    -- -- end
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "ipynb" },
   callback = function()
