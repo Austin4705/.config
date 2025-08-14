@@ -96,6 +96,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
   export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
   export PATH="$(gem environment gemdir)/bin:$PATH"
+  export PATH="$HOME/bin:$PATH"
 fi
 
 # ————————————————————————————————————————————————————————————————
@@ -191,7 +192,12 @@ alias skibiditoilet="echo dub dub dub yes yes"
 alias goon="echo everyday"
 alias img="kitty +kitten icat"
 alias tc="latexmk -c" #TexClean
+alias tch="latexmk -C" #TexCleanHard
 alias fclr="printf '\033c'"
 alias gal="git add ."
 alias gc="git commit -a -S -m"
+alias ec="v ~/.zshrc"
+alias rc="source ~/.zshrc"
+alias gtvc="cd ~/.config/nvim/lua/"
+alias cod="cd Library/Application\ Support/Steam/steamapps/common/Call\ of\ Duty\ Black\ Ops\ III/BO3MacFix"
 
