@@ -26,7 +26,6 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # You can set 0 to disable the padding feature
 # accordion-padding = 0
 accordion-padding = 30
-
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
 
@@ -89,8 +88,8 @@ outer.right = 0
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
+alt-slash = 'layout tiles horizontal '
+alt-comma = 'layout accordion horizontal '
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
@@ -130,7 +129,7 @@ alt-m = 'workspace M'
 # alt-n = 'workspace N'
 # alt-o = 'workspace O'
 #alt-p = 'workspace P'
-# alt-q = 'workspace Q'
+alt-q = 'workspace Q'
 # alt-r = 'workspace R'
 alt-s = 'workspace S'
 # alt-t = 'workspace T'
@@ -163,7 +162,7 @@ alt-shift-m = 'move-node-to-workspace M'
 # alt-shift-n = 'move-node-to-workspace N'
 # alt-shift-o = 'move-node-to-workspace O'
 #alt-shift-p = 'move-node-to-workspace P'
-# alt-shift-q = 'move-node-to-workspace Q'
+alt-shift-q = 'move-node-to-workspace Q'
 # alt-shift-r = 'move-node-to-workspace R'
 alt-shift-s = 'move-node-to-workspace S'
 # alt-shift-t = 'move-node-to-workspace T'
@@ -201,6 +200,7 @@ alt-u = [ # Switch all monitors
   'move-workspace-to-monitor --wrap-around next --workspace F',
   'move-workspace-to-monitor --wrap-around next --workspace G',
   'move-workspace-to-monitor --wrap-around next --workspace M',
+  'move-workspace-to-monitor --wrap-around next --workspace Q',
   'move-workspace-to-monitor --wrap-around next --workspace S',
   'move-workspace-to-monitor --wrap-around next --workspace V',
   'move-workspace-to-monitor --wrap-around next --workspace W',
@@ -219,11 +219,12 @@ alt-i = [ # Initlize Display
   'move-workspace-to-monitor --workspace F main',
   'move-workspace-to-monitor --workspace G secondary',
   'move-workspace-to-monitor --workspace M secondary',
+  'move-workspace-to-monitor --workspace Q secondary',
   'move-workspace-to-monitor --workspace S main',
   'move-workspace-to-monitor --workspace V main',
   'move-workspace-to-monitor --workspace W main',
   'move-workspace-to-monitor --workspace X main',
-  'move-workspace-to-monitor --workspace Z secondary',
+  'move-workspace-to-monitor --workspace Z main',
 ]
 
 alt-r = [ # Reset
@@ -251,32 +252,19 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
-# A for AI
+# web
 [[on-window-detected]]
-if.app-id = "com.openai.chat"
-run = "move-node-to-workspace A"
+if.app-id = "app.zen-browser.zen"
+run = "move-node-to-workspace Z"
 
 [[on-window-detected]]
-if.app-id = "com.anthropic.claudefordesktop"
-run = "move-node-to-workspace A"
+if.app-id = "com.google.Chrome"
+run = "move-node-to-workspace Z"
 
-# X for working apps
-[[on-window-detected]]
-if.app-id = "com.todesktop.230313mzl4w4u92"
-run = "move-node-to-workspace X"
-
-[[on-window-detected]]
-if.app-id = "com.autodesk.fusion360"
-run = "move-node-to-workspace F"
-
-[[on-window-detected]]
-if.app-id = "com.microsoft.rdc.macos"
-run = "move-node-to-workspace F"
-
-# V for vim
+# vim
 [[on-window-detected]]
 if.app-id = "net.kovidgoyal.kitty"
-run = "move-node-to-workspace V"
+run = "move-node-to-workspace X"
 
 # C for Chat Apps
 [[on-window-detected]]
@@ -288,12 +276,60 @@ if.app-id = "com.tinyspeck.slackmacgap"
 run = "move-node-to-workspace C"
 
 [[on-window-detected]]
-if.app-id = "com.legcord.legcord"
+if.app-id = "com.legcord.Legcord"
 run = "move-node-to-workspace C"
 
 [[on-window-detected]]
 if.app-id = "com.automattic.beeper.desktop"
 run = "move-node-to-workspace C"
+
+# File preview
+[[on-window-detected]]
+if.app-id = "com.apple.Preview"
+run = ["layout floating", "move-node-to-workspace S"]
+
+# Z for Zotero and Quaderno
+[[on-window-detected]]
+if.app-id = "org.zotero.zotero"
+run = "move-node-to-workspace A"
+
+[[on-window-detected]]
+if.app-id = "com.fccl.quadernopcapp"
+run = "move-node-to-workspace A"
+
+# Downloads
+[[on-window-detected]]
+if.app-id = "com.apple.finder"
+run = ["move-node-to-workspace D"]
+# run = ["layout floating", "move-node-to-workspace G"]
+
+# AI
+[[on-window-detected]]
+if.app-id = "com.openai.chat"
+run = "move-node-to-workspace A"
+
+[[on-window-detected]]
+if.app-id = "com.anthropic.claudefordesktop"
+run = "move-node-to-workspace A"
+
+# Working apps
+[[on-window-detected]] # MS TODO
+if.app-id = "com.todesktop.230313mzl4w4u92"
+run = "move-node-to-workspace V"
+
+[[on-window-detected]]
+if.app-id = "com.microsoft.rdc.macos"
+run = "move-node-to-workspace F"
+
+# Calandear
+[[on-window-detected]]
+if.app-id = "com.apple.iCal"
+run = "move-node-to-workspace V"
+
+# CAD
+[[on-window-detected]]
+if.app-id = "com.autodesk.fusion360"
+run = "move-node-to-workspace G"
 
 # M for Music
 [[on-window-detected]]
@@ -304,56 +340,44 @@ run = "move-node-to-workspace M"
 if.app-id = "com.apple.Music"
 run = "move-node-to-workspace M"
 
-# file preview
+# Notes
 [[on-window-detected]]
-if.app-id = "com.apple.Preview"
-run = ["layout floating", "move-node-to-workspace S"]
-
-# Z for Zotero and Quaderno
-[[on-window-detected]]
-if.app-id = "org.zotero.zotero"
-run = "move-node-to-workspace Z"
+if.app-id = "com.microsoft.onenote.mac"
+run = "move-node-to-workspace Q"
 
 [[on-window-detected]]
-if.app-id = "com.fccl.quadernopcapp"
-run = "move-node-to-workspace Z"
-
-# W for web
-[[on-window-detected]]
-if.app-id = "app.zen-browser.zen"
-run = "move-node-to-workspace W"
-
-[[on-window-detected]]
-if.app-id = "com.google.Chrome"
-run = "move-node-to-workspace W"
-
-# G for General space
-[[on-window-detected]]
-if.app-id = "com.apple.iCal"
-run = "move-node-to-workspace G"
-
-[[on-window-detected]]
-if.app-id = "com.microsoft.to-do-mac"
-run = "move-node-to-workspace G"
+if.app-id = "notion.id"
+run = "move-node-to-workspace Q"
 
 [[on-window-detected]]
 if.app-id = "com.apple.Notes"
-run = "move-node-to-workspace G"
+run = "move-node-to-workspace Q"
 
 [[on-window-detected]]
-if.app-id = "com.getcoldturkey.blocker"
-run = "move-node-to-workspace G"
+if.app-id = "com.microsoft.to-do-mac"
+run = "move-node-to-workspace Q"
+
+# Maps
+[[on-window-detected]]
+if.app-id = "com.apple.findmy"
+run = "move-node-to-workspace W"
 
 [[on-window-detected]]
-if.app-id = "com.microsoft.onenote.mac"
-run = "move-node-to-workspace G"
+if.app-id = "com.apple.Maps"
+run = "move-node-to-workspace W"
 
-# D 
+# General space
 [[on-window-detected]]
-if.app-id = "com.apple.finder"
-run = ["move-node-to-workspace D"]
-# run = ["layout floating", "move-node-to-workspace G"]
+if.app-id = "com.apple.ActivityMonitor"
+run = "move-node-to-workspace F"
 
+[[on-window-detected]]
+if.app-id = "com.apple.systempreferences"
+run = "move-node-to-workspace F"
+
+[[on-window-detected]]
+if.app-id = "com.electron.dockerdesktop"
+run = "move-node-to-workspace F"
 
 #[workspace-to-monitor-force-assignment]
 #2 = 'main'
@@ -369,3 +393,9 @@ run = ["move-node-to-workspace D"]
 #W = 'main'
 #X = 'main'
 #Z = 'secondary'
+#
+#
+#TODO: also make default such that one is always large and others are tiled back 
+# default asigment
+#
+#

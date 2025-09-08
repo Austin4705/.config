@@ -81,6 +81,18 @@ if [[ "$(uname)" == "Darwin" ]]; then
           export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
       fi
   fi
+
+  # # VIGIL LABS
+  # # --- shorten the ugly EKS ARN to just the cluster name --------------
+  # kube_cluster_short() {
+  #   # strip everything up to the last “/” in the ARN
+  #   echo "${1##*/}"
+  # }
+  # export KUBE_PS1_CLUSTER_FUNCTION=kube_cluster_short
+  # 
+  # source "$(brew --prefix)/opt/kube-ps1/share/kube-ps1.sh"
+  # PROMPT='$(kube_ps1) '$PROMPT
+
   unset __conda_setup
   # <<< conda initialize <<<
   #
