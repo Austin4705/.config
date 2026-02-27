@@ -165,6 +165,10 @@ export GPG_TTY=$(tty)
 gpgconf --launch gpg-agent
 
 export EDITOR=nvim
+
+# Reset cursor to steady bar after any program (e.g. nvim) changes it to block
+__reset_cursor() { printf '\e[6 q'; }
+precmd_functions+=(__reset_cursor)
 export TEXINPUTS=~/Documents/Templates//: #Needed so latex can always find my sty files
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 export VCPKG_ROOT="~/Dev/vcpkg"

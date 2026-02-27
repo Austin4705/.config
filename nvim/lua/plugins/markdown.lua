@@ -18,4 +18,15 @@ return {
       end
     end,
   },
+  { 
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters = {
+        ["markdownlint-cli2"] = {
+          -- Disables the line length check
+          args = { "--config", vim.fn.stdpath("config") .. "/.markdownlint-cli2.yaml", "--" },
+        },
+      },
+    },
+  },
 }
