@@ -76,9 +76,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
       eval "$__conda_setup"
   else
       if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-          . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+# . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"  # commented out by conda initialize
       else
-          export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+# export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"  # commented out by conda initialize
       fi
   fi
 
@@ -175,9 +175,9 @@ export VCPKG_ROOT="~/Dev/vcpkg"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH" #Used for tdf
 
 #Create a file called .apikeys inside of config and fill it with lines of 'export KEYNAME="key"' 
-if [ -f ~/.config/.apikeys ]; then
-  source ~/.config/.apikeys
-fi
+# if [ -f ~/.config/.apikeys ]; then
+#   source ~/.config/.apikeys
+# fi
 
 # ————————————————————————————————————————————————————————————————
 # Alias listings for shortcuts
@@ -209,7 +209,11 @@ alias fclr="printf '\033c'"
 alias gal="git add ."
 alias gc="git commit -a -S -m"
 alias ec="v ~/.zshrc"
+alias tmc="v ~/.config/tmux/tmux.conf"
+alias rtmc='tmux source-file ~/.config/tmux/tmux.conf'
 alias rc="source ~/.zshrc"
 alias gtvc="cd ~/.config/nvim/lua/"
 alias cod="cd Library/Application\ Support/Steam/steamapps/common/Call\ of\ Duty\ Black\ Ops\ III/BO3MacFix"
+alias pokemon="pokemon-colorscripts"
 
+export PATH="$HOME/.deno/bin:$PATH"

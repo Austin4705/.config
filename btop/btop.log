@@ -14,3 +14,33 @@
 2025/09/07 (11:54:40) | ERROR: Stall in Runner thread, restarting!
 2025/09/07 (11:55:14) | ERROR: Stall in Runner thread, restarting!
 2025/09/07 (11:56:48) | ERROR: Stall in Runner thread, restarting!
+
+2025/09/24 (17:12:35) | ===> btop++ v.1.4.0
+2025/09/24 (17:12:35) | ERROR: Stall in Runner thread, restarting!
+
+2025/09/25 (03:26:01) | ===> btop++ v.1.4.0
+2025/09/25 (03:26:01) | ERROR: Stall in Runner thread, restarting!
+
+2025/11/13 (05:20:20) | ===> btop++ v.1.4.0
+2025/11/13 (05:20:20) | ERROR: failed getting network interfaces
+
+2025/11/17 (21:40:56) | ===> btop++ v.1.4.0
+2025/11/17 (21:40:56) | ERROR: Stall in Runner thread, restarting!
+
+2025/12/08 (21:45:27) | ===> btop++ v.1.4.0
+2025/12/08 (21:45:27) | ERROR: Stall in Runner thread, restarting!
+2025/12/09 (05:40:19) | ERROR: failed getting network interfaces
+
+2026/01/19 (12:21:55) | ===> btop++ v.1.4.0
+2026/01/19 (12:21:55) | ERROR: failed getting network interfaces
+
+2026/02/02 (23:55:36) | ===> btop++ v.1.4.0
+2026/02/02 (23:55:36) | ERROR: Stall in Runner thread, restarting!
+
+2026/02/04 (01:35:08) | ===> btop++ v.1.4.0
+2026/02/04 (01:35:08) | ERROR: Stall in Runner thread, restarting!
+2026/02/04 (01:48:54) | ERROR: Stall in Runner thread, restarting!
+2026/02/04 (01:49:00) | ERROR: Stall in Runner thread, restarting!
+
+2026/02/07 (18:27:36) | ===> btop++ v.1.4.0
+2026/02/07 (18:27:36) | ERROR: Exception in runner thread -> Proc:: -> basic_string
