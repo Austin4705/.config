@@ -200,7 +200,14 @@ if command -v eza >/dev/null 2>&1; then
 fi
 
 alias v="nvim"
-alias ya="yazi"
+function ya() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
 alias clr="clear"
 alias q="exit"
 alias cpcmp="clang++ -Wall -g -O3 -std=c++20"

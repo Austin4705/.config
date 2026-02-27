@@ -1,0 +1,17 @@
+[flavor]
+dark  = "catppuccin-mocha"
+light = "catppuccin-mocha"
+
+[status]
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+[tabs]
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+[indicator]
+current = { fg = "#cdd6f4", bg = "#45475a", bold = true }
+parent  = { fg = "#585b70", reversed = true }
+preview = { underline = true }
+padding = { open = "█", close = "█" }
