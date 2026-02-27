@@ -1,30 +1,20 @@
 #!/bin/bash
 
-FRONT_APP_SCRIPT='sketchybar --set $NAME label="$INFO"'
-
-yabai=(
-  icon.width=0
-  label.width=0
-  script="$PLUGIN_DIR/yabai.sh"
-  icon.font="$FONT:Bold:16.0"
-  associated_display=active
-)
-
 front_app=(
   icon.drawing=off
-  label.font="$FONT:Black:12.0"
+  label.font="$FONT:Black:13.0"
   associated_display=active
-  script="$FRONT_APP_SCRIPT"
+  background.color=$BACKGROUND_1
+  background.border_color=$BACKGROUND_2
+  background.border_width=1
+  background.drawing=on
+  padding_left=5
+  padding_right=5
+  script="$PLUGIN_DIR/front_app.sh"
 )
 
-sketchybar --add event window_focus            \
-           --add event windows_on_spaces       \
-           --add item yabai left               \
-           --set yabai "${yabai[@]}"           \
-           --subscribe yabai window_focus      \
-                             windows_on_spaces \
-                             mouse.clicked     \
-                                               \
-           --add item front_app left           \
+sketchybar --add item front_app left           \
            --set front_app "${front_app[@]}"   \
-           --subscribe front_app front_app_switched
+           --subscribe front_app front_app_switched \
+                                mouse.entered  \
+                                mouse.exited

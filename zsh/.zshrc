@@ -200,7 +200,7 @@ if command -v eza >/dev/null 2>&1; then
 fi
 
 alias v="nvim"
-function ya() {
+function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   yazi "$@" --cwd-file="$tmp"
   if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then

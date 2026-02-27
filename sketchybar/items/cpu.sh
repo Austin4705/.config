@@ -1,53 +1,36 @@
 #!/bin/bash
 
-cpu_top=(
-  label.font="$FONT:Semibold:7"
-  label=CPU
-  icon.drawing=off
-  width=0
-  padding_right=15
-  y_offset=6
-)
-
 cpu_percent=(
   label.font="$FONT:Heavy:12"
   label=CPU
-  y_offset=-4
-  padding_right=15
-  width=55
-  icon.drawing=off
+  icon=􀧓
+  icon.font="$FONT:Bold:14.0"
+  icon.color=$BLUE
+  padding_left=5
+  padding_right=0
+  width=65
   update_freq=4
+  background.color=$HIGHLIGHT_COLOR
+  background.drawing=off
   mach_helper="$HELPER"
 )
 
-cpu_sys=(
-  width=0
-  graph.color=$RED
-  graph.fill_color=$RED
-  label.drawing=off
-  icon.drawing=off
-  background.height=30
-  background.drawing=on
-  background.color=$TRANSPARENT
-)
-
-cpu_user=(
+cpu_graph=(
   graph.color=$BLUE
+  graph.fill_color=$BLUE
   label.drawing=off
   icon.drawing=off
-  background.height=30
+  background.height=26
   background.drawing=on
   background.color=$TRANSPARENT
 )
 
-sketchybar --add item cpu.top right              \
-           --set cpu.top "${cpu_top[@]}"         \
-                                                 \
-           --add item cpu.percent right          \
-           --set cpu.percent "${cpu_percent[@]}" \
-                                                 \
-           --add graph cpu.sys right 75          \
-           --set cpu.sys "${cpu_sys[@]}"         \
-                                                 \
-           --add graph cpu.user right 75         \
-           --set cpu.user "${cpu_user[@]}"
+# Single combined graph - cpu.user receives data from the C helper
+# (cpu.sys pushes are silently ignored since that item no longer exists)
+sketchybar --add graph cpu.user right 50             \
+           --set cpu.user "${cpu_graph[@]}"          \
+                                                     \
+           --add item cpu.percent right              \
+           --set cpu.percent "${cpu_percent[@]}"     \
+           --subscribe cpu.percent mouse.entered     \
+                                   mouse.exited

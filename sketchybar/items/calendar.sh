@@ -1,17 +1,20 @@
 #!/bin/bash
 
 calendar=(
-  icon=cal
-  icon.font="$FONT:Black:12.0"
-  icon.padding_right=0
-  label.width=45
+  icon.drawing=off
+  label.font="$FONT:Semibold:13.0"
   label.align=right
-  padding_left=15
+  padding_left=8
+  padding_right=10
+  background.color=$HIGHLIGHT_COLOR
+  background.drawing=off
   update_freq=30
   script="$PLUGIN_DIR/calendar.sh"
-  click_script="$PLUGIN_DIR/zen.sh"
+  click_script="open -a 'Calendar'"
 )
 
-sketchybar --add item calendar right       \
-           --set calendar "${calendar[@]}" \
-           --subscribe calendar system_woke
+sketchybar --add item calendar right          \
+           --set calendar "${calendar[@]}"   \
+           --subscribe calendar system_woke  \
+                                mouse.entered \
+                                mouse.exited

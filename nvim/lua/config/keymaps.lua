@@ -24,3 +24,7 @@ end)
 vim.keymap.set("n", "<leader>df", "<cmd>silent !tmux split-window -h 'tdf %:r.pdf'<CR>", {
   desc = "Open PDF in Tmux horizontal split",
 })
+
+vim.keymap.set("n", "<leader>if", "<cmd>edit ~/.config/nvim/nvim-keybinds.md<CR>", {
+  desc = "Open keybinds cheatsheet",
+})

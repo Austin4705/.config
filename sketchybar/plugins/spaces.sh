@@ -1,14 +1,14 @@
 #!/bin/bash
 
 case "$SENDER" in
+  "aerospace_workspace_change")
+    FOCUSED=$(aerospace list-workspaces --focused 2>/dev/null || echo "?")
+    sketchybar --set $NAME label="$FOCUSED"
+    ;;
   "mouse.entered")
     sketchybar --set $NAME background.drawing=on
-    exit 0
     ;;
   "mouse.exited")
     sketchybar --set $NAME background.drawing=off
-    exit 0
     ;;
 esac
-
-sketchybar --set $NAME label="$(date '+%a %b %d  %H:%M')"
