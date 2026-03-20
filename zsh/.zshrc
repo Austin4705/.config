@@ -199,6 +199,7 @@ if command -v eza >/dev/null 2>&1; then
     alias la="eza -la --icons"
 fi
 
+# One letter macros for common things
 alias v="nvim"
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -208,23 +209,43 @@ function y() {
   fi
   rm -f -- "$tmp"
 }
-alias clr="clear"
 alias q="exit"
+alias o="open"
+alias t="tdf"
+function c() {
+  if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+    claude "$@"
+  else
+    claude --ide "$@"
+  fi
+}
+alias b="btop"
+
+alias ec="v ~/.zshrc"
+alias rc="source ~/.zshrc"
+alias tmc="v ~/.config/tmux/tmux.conf"
+alias rtmc='tmux source-file ~/.config/tmux/tmux.conf'
+
+alias gtvc="cd ~/.config/nvim/lua/"
+
+alias gal="git add ."
+alias gc="git commit -a -S -m"
+
+alias clr="clear"
 alias cpcmp="clang++ -Wall -g -O3 -std=c++20"
-alias skibiditoilet="echo dub dub dub yes yes"
-alias goon="echo everyday"
-alias img="kitty +kitten icat"
 alias tc="latexmk -c" #TexClean
 alias tch="latexmk -C" #TexCleanHard
 alias fclr="printf '\033c'"
-alias gal="git add ."
-alias gc="git commit -a -S -m"
-alias ec="v ~/.zshrc"
-alias tmc="v ~/.config/tmux/tmux.conf"
-alias rtmc='tmux source-file ~/.config/tmux/tmux.conf'
-alias rc="source ~/.zshrc"
-alias gtvc="cd ~/.config/nvim/lua/"
-alias cod="cd Library/Application\ Support/Steam/steamapps/common/Call\ of\ Duty\ Black\ Ops\ III/BO3MacFix"
+
 alias pokemon="pokemon-colorscripts"
+alias skibiditoilet="echo dub dub dub yes yes"
+alias goon="echo everyday"
+alias img="kitty +kitten icat"
+alias cod="cd Library/Application\ Support/Steam/steamapps/common/Call\ of\ Duty\ Black\ Ops\ III/BO3MacFix"
 
 export PATH="$HOME/.deno/bin:$PATH"
+
+# ————————————————————————————————————————————————————————————————
+# Welcome Art
+# ————————————————————————————————————————————————————————————————
+fastfetch --logo "$(pokemon-colorscripts -r --no-title)" --logo-type data-raw --structure "OS:Host:Uptime:Shell:Terminal:CPU:Memory"

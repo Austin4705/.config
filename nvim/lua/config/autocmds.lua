@@ -4,9 +4,19 @@
 --
 --
 
+-- Open PDF files in tdf in a tmux split instead of displaying binary
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*.pdf",
+  callback = function()
+    local pdf = vim.fn.expand("%:p")
+    vim.fn.system('tmux split-window -h -l 70% "tdf ' .. pdf .. '"')
+    vim.cmd("bdelete")
+  end,
+})
+
 --Automatically clean auxiliary files (except the PDF) after a successful compile
 vim.api.nvim_create_autocmd("BufWinLeave", {
-  pattern = "tex",
+  pattern = "*.tex",
   callback = function()
     vim.cmd("silent! VimtexClean")
   end,

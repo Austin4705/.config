@@ -31,6 +31,8 @@
   "mini.hipatterns": { "branch": "main", "commit": "2c5dce6dc7443de814d16f7470549811ee86e664" },
   "mini.icons": { "branch": "main", "commit": "5b9076dae1bfbe47ba4a14bc8b967cde0ab5d77e" },
   "mini.pairs": { "branch": "main", "commit": "b7fde3719340946feb75017ef9d75edebdeb0566" },
+  "nabla.nvim": { "branch": "master", "commit": "9b69b709063ccf40ac36fabb4fff7d90b3736475" },
+  "neo-tree.nvim": { "branch": "main", "commit": "9d6826582a3e8c84787bd7355df22a2812a1ad59" },
   "neotest": { "branch": "master", "commit": "deadfb1af5ce458742671ad3a013acb9a6b41178" },
   "neotest-haskell": { "branch": "master", "commit": "d1e1ef345516d6f7bf4903664a555fa2ce10246c" },
   "neotest-python": { "branch": "master", "commit": "b0d3a861bd85689d8ed73f0590c47963a7eb1bf9" },

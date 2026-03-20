@@ -4,7 +4,7 @@
 
 | Key                | Mode            | Description                       |
 | ------------------ | --------------- | --------------------------------- |
-| `<leader>if`       | I forget        | Open the nvim-keybinds.md         |
+| `<leader>if`       | Normal          | Open the nvim-keybinds.md         |
 | `<leader>/`        | Normal          | Live grep (search across project) |
 | `<leader>/`        | Normal          | Live grep (search across project) |
 | `<leader>ff`       | Normal          | Find files                        |
@@ -24,8 +24,9 @@
 | `ds{char}`         | Normal          | Delete surround (e.g. `ds"`)      |
 | `cs{old}{new}`     | Normal          | Change surround (e.g. `cs"'`)     |
 | `<C-\>`            | Normal/Terminal | Toggle floating terminal          |
-
----
+| `<leader>aa/d`     | Normal          | Accept or reject Claude Code diff |
+| `z=`               | Normal          | Spellcheck                        |
+| `g ctrl-g`         | Normal/Visual   | Word Count                        |
 
 ### Custom Keybinds
 

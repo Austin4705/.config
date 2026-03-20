@@ -258,6 +258,50 @@ function M.setup()
   vim.api.nvim_create_user_command("ClaudeCodeDiffDeny", function() M.reject() end, { desc = "Deny Claude diff (inline)", force = true })
   vim.keymap.set("n", "<leader>aa", function() M.accept() end, { desc = "Accept Claude diff" })
   vim.keymap.set("n", "<leader>ad", function() M.reject() end, { desc = "Deny Claude diff" })
+
+  vim.api.nvim_create_user_command("ClaudeDiffDebug", function()
+    local lines = { "=== claude-diff debug ===" }
+
+    local ok_diff, diff_mod = pcall(require, "claudecode.diff")
+    table.insert(lines, "claudecode.diff loaded: " .. tostring(ok_diff))
+    if ok_diff then
+      for _, fn in ipairs({ "open_diff", "_open_native_diff", "open_diff_blocking", "create_diff_view" }) do
+        table.insert(lines, "  " .. fn .. ": " .. tostring(diff_mod[fn] ~= nil))
+      end
+    end
+
+    table.insert(lines, "active inline diffs: " .. vim.tbl_count(active))
+    for orig_buf, info in pairs(active) do
+      local name = vim.api.nvim_buf_is_valid(orig_buf) and vim.api.nvim_buf_get_name(orig_buf) or "(invalid)"
+      table.insert(lines, "  buf " .. orig_buf .. " → proposed " .. info.proposed_bufnr .. " | " .. vim.fn.fnamemodify(name, ":t"))
+    end
+
+    table.insert(lines, "all buffers:")
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.api.nvim_buf_is_valid(buf) then
+        local name = vim.api.nvim_buf_get_name(buf)
+        local bt = vim.api.nvim_get_option_value("buftype", { buf = buf })
+        local tab_name = vim.b[buf].claudecode_diff_tab_name
+        if name ~= "" or bt ~= "" or tab_name then
+          local marker = ""
+          if tab_name then marker = " [CC_DIFF:" .. tostring(tab_name) .. "]" end
+          if reverse[buf] then marker = marker .. " [TRACKED]" end
+          table.insert(lines, string.format("  buf %d bt=%s%s %s", buf, bt, marker, vim.fn.fnamemodify(name, ":t")))
+        end
+      end
+    end
+
+    table.insert(lines, "windows in diff mode:")
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      local ok_d, in_diff = pcall(vim.api.nvim_get_option_value, "diff", { win = win })
+      if ok_d and in_diff then
+        local buf = vim.api.nvim_win_get_buf(win)
+        table.insert(lines, string.format("  win %d → buf %d (%s)", win, buf, vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t")))
+      end
+    end
+
+    vim.notify(table.concat(lines, "\n"), vim.log.levels.INFO)
+  end, { desc = "Show claude-diff debug info" })
 end
 
 return M
