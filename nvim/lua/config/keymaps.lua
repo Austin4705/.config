@@ -17,13 +17,10 @@ vim.keymap.set("n", "<leader>ud", function()
     print("Diagnostics disabled")
   end
 end)
--- vim.keymap.set("n", "<leader>df", "<cmd>silent !tmux split-window -h -l 38%% 'tdf %:r.pdf'<CR>", {
---   desc = "Open PDF in Tmux (38% split)",
---   buffer = true,
--- })
-vim.keymap.set("n", "<leader>df", "<cmd>silent !tmux split-window -h 'tdf %:r.pdf'<CR>", {
-  desc = "Open PDF in Tmux horizontal split",
-})
+vim.keymap.set("n", "<leader>df", function()
+  local pdf = vim.fn.expand("%:p:r") .. ".pdf"
+  vim.fn.system('tmux list-panes -F "#{pane_current_command}" | grep -qx tdf || tmux split-window -h -d -l 30% "TERM=xterm-kitty tdf ' .. pdf .. '"')
+end, { desc = "Open PDF in tdf (30% right split)" })
 
 vim.keymap.set("n", "<leader>if", "<cmd>edit ~/.config/nvim/nvim-keybinds.md<CR>", {
   desc = "Open keybinds cheatsheet",

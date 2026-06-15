@@ -78,7 +78,7 @@ APPLESCRIPT
     COUNTER=$((COUNTER+1))
   done <<< "$(echo "$MENU_DATA" | tail -n +2)"
 
-  REORDER="$REORDER spaces"
+  REORDER="$REORDER spaces zen_toggle"
   sketchybar --reorder $REORDER 2>/dev/null
 }
 

@@ -75,6 +75,7 @@ sketchybar --default "${defaults[@]}"
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/front_app.sh"
 source "$ITEM_DIR/spaces.sh"
+source "$ITEM_DIR/zen_toggle.sh"
 
 # ===== RIGHT SIDE (added rightmost first) =====
 # Far right corner: Time | Battery% | WiFi | Sound Output | Volume | Bluetooth

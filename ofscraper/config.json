@@ -1,0 +1,80 @@
+{
+    "main_profile": "main_profile",
+    "metadata": "{configpath}/{profile}/.data/{model_id}",
+    "discord": "",
+    "file_options": {
+        "save_location": "/Users/austinwu/Data/ofscraper",
+        "dir_format": "{model_username}/{responsetype}/{mediatype}/",
+        "file_format": "{filename}.{ext}",
+        "textlength": 0,
+        "space_replacer": " ",
+        "date": "MM-DD-YYYY",
+        "text_type_default": "letter",
+        "truncation_default": true
+    },
+    "download_options": {
+        "filter": [
+            "Images",
+            "Audios",
+            "Videos"
+        ],
+        "auto_resume": true,
+        "system_free_min": 0,
+        "max_post_count": 0,
+        "verify_all_integrity": false
+    },
+    "binary_options": {
+        "ffmpeg": ""
+    },
+    "cdm_options": {
+        "private-key": null,
+        "client-id": null,
+        "key-mode-default": "cdrm"
+    },
+    "performance_options": {
+        "download_sems": 6,
+        "download_limit": 0
+    },
+    "content_filter_options": {
+        "block_ads": false,
+        "file_size_max": 0,
+        "file_size_min": 0,
+        "length_max": 0,
+        "length_min": 0
+    },
+    "advanced_options": {
+        "dynamic-mode-default": "digital",
+        "skip_unavailable_content": true,
+        "downloadbars": false,
+        "cache-mode": "sqlite",
+        "rotate_logs": true,
+        "sanitize_text": false,
+        "temp_dir": null,
+        "remove_hash_match": null,
+        "infinite_loop_action_mode": false,
+        "incremental_downloads": true,
+        "default_user_list": "main",
+        "default_black_list": [],
+        "logs_expire_time": 0,
+        "ssl_verify": "custom",
+        "env_files": []
+    },
+    "script_options": {
+        "after_action_script": null,
+        "post_script": null,
+        "naming_script": null,
+        "after_download_script": null,
+        "skip_download_script": null
+    },
+    "responsetype": {
+        "timeline": "Posts",
+        "message": "Messages",
+        "archived": "Archived",
+        "paid": "Messages",
+        "stories": "Stories",
+        "highlights": "Stories",
+        "profile": "Profile",
+        "pinned": "Posts",
+        "streams": "Streams"
+    }
+}

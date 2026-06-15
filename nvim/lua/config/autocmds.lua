@@ -4,21 +4,22 @@
 --
 --
 
--- Open PDF files in tdf in a tmux split instead of displaying binary
+-- Open PDF files in tdf in a tmux split instead of displaying binary.
+-- -d keeps focus on nvim so the buffer-delete that follows doesn't fight tmux focus.
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*.pdf",
   callback = function()
     local pdf = vim.fn.expand("%:p")
-    vim.fn.system('tmux split-window -h -l 70% "tdf ' .. pdf .. '"')
+    vim.fn.system('tmux list-panes -F "#{pane_current_command}" | grep -qx tdf || tmux split-window -h -d -l 30% "TERM=xterm-kitty tdf ' .. pdf .. '"')
     vim.cmd("bdelete")
   end,
 })
 
---Automatically clean auxiliary files (except the PDF) after a successful compile
-vim.api.nvim_create_autocmd("BufWinLeave", {
-  pattern = "*.tex",
+-- Repaint nvim after a neighboring pane (typically tdf) closes and leaves
+-- the surrounding pane in a half-redrawn state.
+vim.api.nvim_create_autocmd("FocusGained", {
   callback = function()
-    vim.cmd("silent! VimtexClean")
+    vim.cmd("redraw!")
   end,
 })
 
@@ -26,12 +27,6 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "tex" },
   callback = function()
     vim.opt_local.wrap = true
-    -- If you also want linebreak at word boundaries:
-    -- vim.opt_local.linebreak = true
-    -- Only compile if the current file is detected as a main LaTeX document
-    -- if vim.g.vimtex_is_main_file then
-    vim.cmd("VimtexCompile")
-    -- end
   end,
 })
 

@@ -270,6 +270,10 @@ run = "move-node-to-workspace Z"
 if.app-id = "com.google.Chrome"
 run = "move-node-to-workspace W"
 
+[[on-window-detected]]
+if.app-id = "org.mozilla.firefox"
+run = "move-node-to-workspace W"
+
 # vim
 [[on-window-detected]]
 if.app-id = "net.kovidgoyal.kitty"
@@ -317,14 +321,14 @@ run = "move-node-to-workspace C"
 if.app-id = "com.apple.Preview"
 run = ["layout floating", "move-node-to-workspace S"]
 
-# Z for Zotero and Quaderno
+# B for Zotero and Quaderno
 [[on-window-detected]]
 if.app-id = "org.zotero.zotero"
-run = "move-node-to-workspace A"
+run = "move-node-to-workspace B"
 
 [[on-window-detected]]
 if.app-id = "com.fccl.quadernopcapp"
-run = "move-node-to-workspace A"
+run = "move-node-to-workspace B"
 
 # Downloads
 [[on-window-detected]]
@@ -333,6 +337,10 @@ run = ["move-node-to-workspace D"]
 # run = ["layout floating", "move-node-to-workspace G"]
 
 # AI
+[[on-window-detected]]
+if.app-id = "com.openai.codex"
+run = "move-node-to-workspace A"
+
 [[on-window-detected]]
 if.app-id = "com.openai.chat"
 run = "move-node-to-workspace A"
